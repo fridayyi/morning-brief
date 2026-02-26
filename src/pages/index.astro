@@ -21,7 +21,7 @@ const { Content } = await latest.render();
       <ul class="brief-list">
         {dailyBriefs.slice(1).map((brief) => (
           <li>
-            <a href={`${import.meta.env.BASE_URL}daily/${brief.data.date}/`} class="brief-link">
+            <a href={`${import.meta.env.BASE_URL}/daily/${brief.data.date}/`} class="brief-link">
               <span class="date">{brief.data.date}</span>
               <span class="weekday">{brief.data.weekday || ''}</span>
             </a>
