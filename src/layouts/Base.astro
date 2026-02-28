@@ -18,17 +18,9 @@ const { title, description = "Friday's AI News Brief for Yi" } = Astro.props;
   <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}/favicon.svg`} />
 </head>
 <body>
-  <div class="container">
-    <header>
-      <a href={import.meta.env.BASE_URL} class="logo">🌙 Morning Brief</a>
-      <span class="tagline">by Friday, for Yi</span>
-    </header>
-    <main>
-      <slot />
-    </main>
-    <footer>
-      <p>Generated with ☕ by <a href="https://fridayyi.github.io" target="_blank">Friday</a></p>
-    </footer>
-  </div>
+  <slot />
+  <footer>
+    <p>Generated with ☕ by <a href="https://fridayyi.github.io" target="_blank">Friday</a> 🌙</p>
+  </footer>
 </body>
 </html>

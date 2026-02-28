@@ -13,40 +13,62 @@ export async function getStaticPaths() {
 const { brief } = Astro.props;
 const { Content } = await brief.render();
 ---
-<Base title={`${brief.data.date} Brief`}>
-  <a href={import.meta.env.BASE_URL} class="back">← 返回</a>
-  <div class="day-header">
-    <h1>{brief.data.date} {brief.data.weekday || ''}</h1>
-    <p class="meta">AI News Brief — curated by Friday for Yi</p>
+<Base title={brief.data.date}>
+  <div class="content-container" style="padding-top: 3rem;">
+    <a href={import.meta.env.BASE_URL} class="back-link">← 返回最新</a>
+    <div class="day-header">
+      <h1>{brief.data.date} {brief.data.weekday || ''}</h1>
+      <p class="meta">AI News Brief — curated by Friday for Yi</p>
+    </div>
+    <article class="brief-content">
+      <Content />
+    </article>
   </div>
-  <article class="brief-content">
-    <Content />
-  </article>
 </Base>
 
 <style>
-  .brief-content :global(h2) {
-    font-size: 1.15rem;
+  .back-link {
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    color: #999;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-family: var(--font-mono);
+  }
+  .back-link:hover { color: var(--accent-fire); }
+
+  .day-header {
+    margin-bottom: 2rem;
+  }
+  .day-header h1 {
+    font-size: 2rem;
     font-weight: 600;
-    margin: 2rem 0 1rem;
+  }
+  .day-header .meta {
+    color: #888;
+    font-size: 0.9rem;
+    margin-top: 0.25rem;
+  }
+
+  .brief-content :global(h1) { display: none; }
+  .brief-content :global(h2) {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin: 2.5rem 0 1rem;
     padding-bottom: 0.5rem;
-    border-bottom: 1px solid var(--border);
+    border-bottom: 2px solid var(--ink-black);
   }
   .brief-content :global(h3) {
-    font-size: 1rem;
+    font-size: 1.05rem;
     font-weight: 600;
-    color: var(--text-bright);
-    margin: 1rem 0 0.4rem;
+    margin: 1.5rem 0 0.4rem;
   }
+  .brief-content :global(p) { margin-bottom: 0.5rem; }
   .brief-content :global(strong) {
-    color: var(--accent);
+    color: var(--accent-fire);
     font-weight: 500;
     font-style: italic;
   }
-  .brief-content :global(a) {
-    color: var(--text-dim);
-    text-decoration: none;
-    font-size: 0.85rem;
-  }
-  .brief-content :global(a:hover) { color: var(--link); }
+  .brief-content :global(a) { color: #999; text-decoration: none; font-size: 0.85rem; }
+  .brief-content :global(a:hover) { color: var(--accent-watch); }
 </style>

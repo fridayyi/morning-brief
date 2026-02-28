@@ -5,6 +5,9 @@ const daily = defineCollection({
   schema: z.object({
     date: z.string(),
     weekday: z.string().optional(),
+    tier1: z.number().optional(),
+    tier2: z.number().optional(),
+    tier3: z.number().optional(),
   }),
 });
 
